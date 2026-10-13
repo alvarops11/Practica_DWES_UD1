@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talleres tecnológicos</title>
+</head>
+<body>
+  <h1>Talleres tecnológicos</h1>
+
+  <form action="/talleres" method="GET">
+    <label for="categoria">Categoría</label>
+    <input
+      id="categoria"
+      name="categoria"
+      value="<%= filtros.categoria %>"
+    >
+
+    <label for="nivel">Nivel</label>
+    <select id="nivel" name="nivel">
+      <option value="">Todos</option>
+      <option value="inicial"
+        <%= filtros.nivel === 'inicial' ? 'selected' : '' %>>
+        Inicial
+      </option>
+      <option value="intermedio"
+        <%= filtros.nivel === 'intermedio' ? 'selected' : '' %>>
+        Intermedio
+      </option>
+      <option value="avanzado"
+        <%= filtros.nivel === 'avanzado' ? 'selected' : '' %>>
+        Avanzado
+      </option>
+    </select>
+
+    <label>
+      <input
+        type="checkbox"
+        name="disponibles"
+        value="true"
+        <%= filtros.disponibles ? 'checked' : '' %>
+      >
+      Solo talleres con plazas
+    </label>
+
+    <button type="submit">Filtrar</button>
+    <a href="/talleres">Limpiar filtros</a>
+  </form>
+
+  <% if (talleres.length === 0) { %>
+    <p>No hay talleres que coincidan con los filtros.</p>
+  <% } else { %>
+    <% talleres.forEach((taller) => { %>
+      <article>
+        <h2>
+          <a href="/talleres/<%= taller.id %>">
+            <%= taller.titulo %>
+          </a>
+        </h2>
+
+        <p>Categoría: <%= taller.categoria %></p>
+        <p>Nivel: <%= taller.nivel %></p>
+        <p>Plazas totales: <%= taller.plazas %></p>
+        <p>Plazas restantes: <%= taller.plazasRestantes %></p>
+      </article>
+    <% }) %>
+  <% } %>
+</body>
+</html>

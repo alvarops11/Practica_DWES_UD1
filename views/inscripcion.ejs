@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inscripción</title>
+</head>
+<body>
+  <h1>Inscripción en <%= taller.titulo %></h1>
+
+  <% if (Object.keys(errores).length > 0) { %>
+    <div role="alert">
+      <p>Revisa los siguientes errores:</p>
+      <ul>
+        <% Object.values(errores).forEach((error) => { %>
+          <li><%= error %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+
+  <form
+    action="/talleres/<%= taller.id %>/inscripcion"
+    method="POST"
+  >
+    <label for="nombre">Nombre</label>
+    <input
+      id="nombre"
+      name="nombre"
+      maxlength="100"
+      required
+      value="<%= valores.nombre %>"
+    >
+
+    <% if (errores.nombre) { %>
+      <p><%= errores.nombre %></p>
+    <% } %>
+
+    <label for="email">Correo electrónico</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      maxlength="254"
+      required
+      value="<%= valores.email %>"
+    >
+
+    <% if (errores.email) { %>
+      <p><%= errores.email %></p>
+    <% } %>
+
+    <button type="submit">Confirmar inscripción</button>
+  </form>
+  <% if (errores.general) { %>
+  <p role="alert"><%= errores.general %></p>
+<% } %>
+  <p><a href="/talleres/<%= taller.id %>">Volver al taller</a></p>
+</body>
+</html>
