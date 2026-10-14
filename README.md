@@ -97,4 +97,4 @@ Se utilizan los métodos `find()`, `filter()`, `map()` y `some()`.
 
 ## Apoyo utilizado
 
-Chat de apoyo: [añadir aquí el enlace a la conversación utilizada].
+Chat de apoyo: https://chatgpt.com/g/g-p-6acddc0575908191bf04748c6cf0f3e7-practica-dwes-ud1/project .
