@@ -10,6 +10,7 @@ export function estaInscrito(tallerId, email, inscripciones) {
     if (!email) {
         email = '';
     }
+
     return inscripciones.some(
         (inscripcion) =>
             inscripcion.tallerId === tallerId &&
@@ -17,6 +18,7 @@ export function estaInscrito(tallerId, email, inscripciones) {
             inscripcion.email.toLowerCase() === email.toLowerCase()
     );
 }
+
 
 export function validarInscripcion(datos) {
   const errores = {};
